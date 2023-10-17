@@ -12,7 +12,7 @@ public class User {
     private Gender gender;
     
     private enum Gender {
-        MAN, WOMAN
+        MALE, FEMALE
     }
     
 }

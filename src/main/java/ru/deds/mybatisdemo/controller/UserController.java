@@ -1,34 +1,43 @@
 package ru.deds.mybatisdemo.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.deds.mybatisdemo.mapper.UserMapper;
 import ru.deds.mybatisdemo.model.User;
 
-@RestController("/batis-api/users/")
+import java.util.List;
+
+@RestController
+@RequestMapping(path="/api/users", produces="application/json")
+@RequiredArgsConstructor
 public class UserController {
+    
+    private final UserMapper userMapper;
     
     @GetMapping("{id}")
     public User getUserById(@PathVariable("id") Long id){
-        return null;
+        return userMapper.findUserById(id);
     }
 
     @GetMapping()
-    public User getAllUsers(){
-        return null;
+    public List<User> getAllUsers(){
+        return userMapper.findAllUsers();
     }
 
     @PostMapping()
-    public User addUser(@RequestBody User user){
-        return null;
+    public void addUser(@RequestBody User user){
+        userMapper.insertUser(user);
     }
 
     @DeleteMapping()
-    public User deleteUserById(@PathVariable("id") Long id){
-        return null;
+    public void deleteUserById(@PathVariable("id") Long id){
+        userMapper.deleteUserById(id);
     }
     
 }

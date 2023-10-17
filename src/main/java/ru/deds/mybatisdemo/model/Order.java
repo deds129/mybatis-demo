@@ -3,7 +3,7 @@ package ru.deds.mybatisdemo.model;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 @Data
 public class Order {
@@ -13,6 +13,6 @@ public class Order {
     private String name;
     private String comment;
     private BigDecimal price;
-    private LocalDateTime date;
+    private Date date;
     
 }
